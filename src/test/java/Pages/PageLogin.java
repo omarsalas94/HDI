@@ -3,7 +3,7 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class PageLogin {
+public class PageLogin extends PageExisteElemento{
     private WebDriver driver;
     private String usuario;
     private String contrasena;
@@ -19,10 +19,14 @@ public class PageLogin {
     }
 
     public void escribirUsuario(){
-        driver.findElement(idUsuario);
+        if(isExist(driver, idUsuario)){
+            driver.findElement(idUsuario).sendKeys(usuario);
+        }
     }
 
     public void escribirContrasena(){
-        driver.findElement(idContrasena);
+        if(isExist(driver, idContrasena)) {
+            driver.findElement(idContrasena).sendKeys(contrasena);
+        }
     }
 }

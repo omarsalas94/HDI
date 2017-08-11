@@ -3,7 +3,9 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class PageLogin extends PageExisteElemento{
+import java.util.concurrent.TimeUnit;
+
+public class PageLogin{
     private WebDriver driver;
     private String usuario;
     private String contrasena;
@@ -17,24 +19,18 @@ public class PageLogin extends PageExisteElemento{
         this.driver = driver;
         this.usuario = usuario;
         this.contrasena = contrasena;
-        esperarPagina(driver);
+        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
     }
 
-    public void escribirUsuario(){
-        if(existe(driver, idUsuario)){
-            driver.findElement(idUsuario).sendKeys(usuario);
-        }
+    public void escribirUsuario() {
+        driver.findElement(idUsuario).sendKeys(usuario);
     }
 
-    public void escribirContrasena(){
-        if(existe(driver, idContrasena)) {
-            driver.findElement(idContrasena).sendKeys(contrasena);
-        }
+    public void escribirContrasena() {
+        driver.findElement(idContrasena).sendKeys(contrasena);
     }
 
-    public void clicIngresar(){
-        if(existe(driver, idIngrear)){
-            driver.findElement(idIngrear).click();
-        }
+    public void clicIngresar() {
+        driver.findElement(idIngrear).click();
     }
 }
